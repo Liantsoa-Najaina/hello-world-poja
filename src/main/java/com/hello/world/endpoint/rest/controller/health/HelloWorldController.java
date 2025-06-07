@@ -1,13 +1,18 @@
 package com.hello.world.endpoint.rest.controller.health;
 
+import com.hello.world.service.HelloWorldService;
+import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
+@AllArgsConstructor
 public class HelloWorldController {
+	private final HelloWorldService service;
 
 	@GetMapping("/hello")
-	public String helloWorld() {
-		return "... world!";
+	public String helloWorld(@RequestParam String name) {
+		return service.uploadHelloWorldMessage(name);
 	}
 }
